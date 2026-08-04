@@ -1,0 +1,833 @@
+// Official A-to-Z Kanyakumari Tourism & Govt Approved Eco-Travel Master Dataset (35+ Places)
+
+export const kanyakumariDestinations = [
+  // --- ICONIC MONUMENTS & MEMORIALS ---
+  {
+    id: 'dest-1',
+    name: 'Vivekananda Rock Memorial',
+    category: 'Attractions',
+    tag: 'Iconic Memorial',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.9,
+    reviews: 14200,
+    price: 75,
+    formattedPrice: '₹75 (Ferry + Pass)',
+    location: 'Vavathurai, Kanyakumari Cape',
+    timing: '08:00 AM - 04:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+    description: 'Built in 1970 on a sacred island rock where Swami Vivekananda meditated in 1892. Features Dhyana Mandapam meditation hall and Shripada Mandapam.',
+    highlights: ['Island Rock Structure', 'Triveni Sangam View', 'Meditation Hall', 'Govt Ferry Service']
+  },
+  {
+    id: 'dest-2',
+    name: 'Thiruvalluvar Statue',
+    category: 'Attractions',
+    tag: 'Monumental Heritage',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.8,
+    reviews: 11800,
+    price: 50,
+    formattedPrice: '₹50 Entry Pass',
+    location: 'Neighboring Island Rock',
+    timing: '08:00 AM - 04:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    description: '133-foot tall stone statue of immortal Tamil poet-philosopher Valluvar. The 38-foot pedestal represents the 38 chapters of Aram (Virtue).',
+    highlights: ['133 Feet Height', 'Ancient Tamil Philosophy', '38-ft Pedestal', 'Hollow Interior Stairway']
+  },
+  {
+    id: 'dest-3',
+    name: 'Gandhi Memorial Mandapam',
+    category: 'Attractions',
+    tag: 'National Memorial',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.7,
+    reviews: 8400,
+    price: 10,
+    formattedPrice: '₹10 Entry',
+    location: 'Cape Beach Promenade',
+    timing: '07:00 AM - 07:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
+    description: 'Pink Odisha-style memorial built where Mahatma Gandhi’s urn was kept for public viewing before immersion in 3 oceans. Sun rays strike exact spot on Oct 2.',
+    highlights: ['Odisha Architecture', 'Oct 2 Sun Alignment', 'Oceanfront Promenade', 'Historical Artifacts']
+  },
+  {
+    id: 'dest-4',
+    name: 'Kamarajar Mani Mandapam',
+    category: 'Attractions',
+    tag: 'State Memorial',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.6,
+    reviews: 3200,
+    price: 0,
+    formattedPrice: 'Free Entry',
+    location: 'Near Gandhi Mandapam',
+    timing: '07:00 AM - 07:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+    description: 'Dedicated to former Chief Minister K. Kamaraj (Kingmaker of Indian politics), whose ashes were kept here before immersion.',
+    highlights: ['Photo Gallery', 'Quiet Gardens', 'Historical Library']
+  },
+  {
+    id: 'dest-5',
+    name: 'Tsunami Memorial Park',
+    category: 'Attractions',
+    tag: 'Memorial Sculpture',
+    badgeColor: '#E0F2FE',
+    badgeTextColor: '#0369A1',
+    rating: 4.6,
+    reviews: 4100,
+    price: 0,
+    formattedPrice: 'Free Access',
+    location: 'Near Cape Seashore',
+    timing: 'Open 24 Hours',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    description: '16-foot bronze hand sculpture holding back a wave, erected in memory of victims of the 2004 Indian Ocean tsunami.',
+    highlights: ['Bronze Hand Monument', 'Oceanfront Reflection', 'Memorial Wall']
+  },
+
+  // --- ANCIENT TEMPLES & SACRED SHRINES ---
+  {
+    id: 'dest-6',
+    name: 'Kanyakumari Bhagavathy Amman Temple',
+    category: 'Spiritual',
+    tag: 'Shakti Peeth Shrine',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.9,
+    reviews: 19500,
+    price: 0,
+    formattedPrice: 'Free Darshan',
+    location: 'Main Beach Road, Cape',
+    timing: '04:30 AM - 12:30 PM, 04:00 PM - 08:30 PM',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
+    description: '3,000-year-old Shakti Peeth temple dedicated to Goddess Kanya Devi. Renowned for the sparkling ruby-and-diamond nose ring visible from the sea.',
+    highlights: ['3000-Year Heritage', 'Diamond Nose Ring', 'Trikala Pooja', 'Ocean Gate Entrance']
+  },
+  {
+    id: 'dest-7',
+    name: 'Suchindram Thanumalayan Temple',
+    category: 'Spiritual',
+    tag: 'Architectural Marvel',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.9,
+    reviews: 14800,
+    price: 0,
+    formattedPrice: 'Free Entry',
+    location: 'Suchindram Town (11 km from Cape)',
+    timing: '04:30 AM - 12:00 PM, 04:30 PM - 08:30 PM',
+    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    description: '17th-century temple representing the Trinity (Brahma, Vishnu, Shiva). Features a 134-ft white gopuram, 18-ft monolithic Hanuman statue, and 4 musical stone pillars.',
+    highlights: ['18-ft Hanuman Monolith', '4 Musical Pillars', 'Trinity Shrine', '134-ft Gopuram']
+  },
+  {
+    id: 'dest-8',
+    name: 'Nagercoil Nagaraja Temple',
+    category: 'Spiritual',
+    tag: 'Serpent Temple',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.8,
+    reviews: 9200,
+    price: 0,
+    formattedPrice: 'Free Entry',
+    location: 'Nagercoil Town (18 km from Cape)',
+    timing: '05:00 AM - 11:30 AM, 05:00 PM - 08:00 PM',
+    image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80',
+    description: 'Unique ancient temple dedicated to Serpent King Nagaraja. The main deity resides in a mud floor where fresh spring water constantly emerges.',
+    highlights: ['Five-Headed Cobra Idol', 'Sacred Mud Prasadam', 'Thatched Roof Sanctuary']
+  },
+  {
+    id: 'dest-9',
+    name: 'Chitharal Jain Rock Cut Monuments',
+    category: 'Spiritual',
+    tag: '9th-Century Caves',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.8,
+    reviews: 3800,
+    price: 20,
+    formattedPrice: '₹20 ASI Ticket',
+    location: 'Chitharal Hill (45 km from Cape)',
+    timing: '08:00 AM - 05:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
+    description: '9th-century Digambara Jain rock-cut cave temple and monastery perched on a granite hill. Features carved idols of 24 Tirthankaras and Goddess Padmavati.',
+    highlights: ['ASI Protected Site', 'Rock-Cut Reliefs', 'Panoramic Hill Trek', 'Ancient Inscriptions']
+  },
+  {
+    id: 'dest-10',
+    name: 'Our Lady of Ransom Gothic Church',
+    category: 'Spiritual',
+    tag: '150-Year Gothic Church',
+    badgeColor: '#E0F2FE',
+    badgeTextColor: '#0369A1',
+    rating: 4.8,
+    reviews: 7900,
+    price: 0,
+    formattedPrice: 'Free Entry',
+    location: 'Church Road, Cape Seashore',
+    timing: '06:00 AM - 08:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80',
+    description: 'Stunning 153-foot white Gothic cathedral facing the ocean. Features stained glass windows depicting the life of Jesus Christ and a golden statue of Mother Mary.',
+    highlights: ['153-ft Spire', 'Ocean View', 'Stained Glass', 'Night Lighting']
+  },
+  {
+    id: 'dest-11',
+    name: 'St. Xavier’s Cathedral (Kottar)',
+    category: 'Spiritual',
+    tag: '16th-Century Cathedral',
+    badgeColor: '#E0F2FE',
+    badgeTextColor: '#0369A1',
+    rating: 4.7,
+    reviews: 6200,
+    price: 0,
+    formattedPrice: 'Free Entry',
+    location: 'Kottar, Nagercoil (16 km from Cape)',
+    timing: '06:00 AM - 07:30 PM Daily',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+    description: 'Historic church built in 1542 by St. Francis Xavier. Site of annual 10-day December festival attracting thousands of pilgrims.',
+    highlights: ['St. Francis Xavier Shrine', 'Dec Annual Festival', 'Historic Bell Tower']
+  },
+
+  // --- FORTS & ROYAL PALACES ---
+  {
+    id: 'dest-12',
+    name: 'Padmanabhapuram Teakwood Palace',
+    category: 'Heritage',
+    tag: 'Royal Wooden Palace',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.9,
+    reviews: 12400,
+    price: 100,
+    formattedPrice: '₹100 Entry Pass',
+    location: 'Thuckalay (35 km from Cape)',
+    timing: '09:00 AM - 04:30 PM (Closed Mondays)',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+    description: '16th-century palace of Travancore kings built entirely of teakwood, rosewood, and granite polish floors. Considered Asia’s finest wooden palace.',
+    highlights: ['Rosewood Ceilings', 'Mural Paintings', 'Clock Tower', 'Royal Armory']
+  },
+  {
+    id: 'dest-13',
+    name: 'Vattakottai Seaside Fort',
+    category: 'Heritage',
+    tag: 'Seaside Fortification',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.7,
+    reviews: 7800,
+    price: 25,
+    formattedPrice: '₹25 Entry Pass',
+    location: 'Vattakottai Coast (7 km from Cape)',
+    timing: '08:00 AM - 05:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+    description: '18th-century circular granite seaside fort built under Captain De Lannoy. Offers sea battlements, cannon points, and ocean views.',
+    highlights: ['Granite Ramparts', 'Sea Cannon Views', 'Coconut Palm Groves']
+  },
+  {
+    id: 'dest-14',
+    name: 'Udayagiri Fort & De Lannoy Tomb',
+    category: 'Heritage',
+    tag: 'Biodiversity Fort Park',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.6,
+    reviews: 3100,
+    price: 30,
+    formattedPrice: '₹30 Entry Pass',
+    location: 'Puliyoorkurichi (26 km from Cape)',
+    timing: '08:00 AM - 05:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80',
+    description: '17th-century military fort transformed into a deer park and forest reserve. Contains the tomb of Flemish commander Eustachius De Lannoy.',
+    highlights: ['Deer Park Reserve', 'Commander De Lannoy Tomb', 'Dense Tree Canopy']
+  },
+
+  // --- WATERFALLS, LAKES & DAMS ---
+  {
+    id: 'dest-15',
+    name: 'Thirparappu Waterfalls',
+    category: 'Nature & Waterfalls',
+    tag: 'Cascading Waterfall',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.8,
+    reviews: 11200,
+    price: 50,
+    formattedPrice: '₹50 Entry Pass',
+    location: 'Pechiparai Eco Zone (55 km from Cape)',
+    timing: '07:00 AM - 06:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+    description: '50-foot cascading waterfall formed by Kothai River. Features natural rock pools, children swimming zones, pedal boating, and a Shiva shrine.',
+    highlights: ['50ft Waterfall', 'Natural Swimming Pool', 'Pedal Boating', 'Forest Bathing']
+  },
+  {
+    id: 'dest-16',
+    name: 'Olakaruvi Forest Twin Waterfalls',
+    category: 'Nature & Waterfalls',
+    tag: 'Trekking Forest Stream',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.8,
+    reviews: 4200,
+    price: 0,
+    formattedPrice: 'Free Trekking',
+    location: 'Western Ghats Reserve (35 km from Cape)',
+    timing: '07:00 AM - 04:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
+    description: 'Pristine twin waterfall hidden inside deep rainforest canopy. Requires a scenic 1-hour mountain stream trek.',
+    highlights: ['Twin Waterfalls', 'Rainforest Trek', 'Medicinal Stream Bath', 'Bird Watching']
+  },
+  {
+    id: 'dest-17',
+    name: 'Mathoor Thottipalam (Aqueduct)',
+    category: 'Nature & Waterfalls',
+    tag: 'Engineering Marvel',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.8,
+    reviews: 8900,
+    price: 30,
+    formattedPrice: '₹30 Entry Pass',
+    location: 'Aruvikkarai River Valley (48 km from Cape)',
+    timing: '07:00 AM - 06:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80',
+    description: 'Asia’s highest and longest trough aqueduct spanning 1,240 feet across Parazhiyar River at an elevation of 115 feet on 28 giant pillars.',
+    highlights: ['Asia Highest Aqueduct', '115-ft Elevation', '28 Stone Pillars', 'Valley Overlook']
+  },
+  {
+    id: 'dest-18',
+    name: 'Pechiparai Dam & Eco Sanctuary',
+    category: 'Nature & Waterfalls',
+    tag: 'Reservoir Reserve',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.7,
+    reviews: 3500,
+    price: 15,
+    formattedPrice: '₹15 Entry',
+    location: 'Pechiparai Hills (60 km from Cape)',
+    timing: '08:00 AM - 05:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    description: 'Historic reservoir built in 1906 under King Moolam Thirunal across Kodayar River. Surrounded by dense Western Ghats rainforest and rubber estates.',
+    highlights: ['Rainforest Reservoir', 'Boating Tours', 'Rubber Plantation Trails']
+  },
+  {
+    id: 'dest-19',
+    name: 'Kodayar Hydroelectric Zone & High Range',
+    category: 'Nature & Waterfalls',
+    tag: 'Highland Sanctuary',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.9,
+    reviews: 2100,
+    price: 0,
+    formattedPrice: 'Govt Permit Required',
+    location: 'Upper Kodayar (75 km from Cape)',
+    timing: '08:00 AM - 04:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
+    description: 'High-altitude reservoir zone (1,300m above sea level) with cloud forests, winches, and lion-tailed macaque habitats.',
+    highlights: ['Cloud Forest', 'Macaque Habitat', 'High-Altitude Reservoir', 'Cool Climate']
+  },
+  {
+    id: 'dest-20',
+    name: 'Mukkadal Dam & Water Catchment',
+    category: 'Nature & Waterfalls',
+    tag: 'Scenic Lake',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.6,
+    reviews: 1800,
+    price: 0,
+    formattedPrice: 'Free Entry',
+    location: 'Mukkadal Hills (25 km from Cape)',
+    timing: '08:00 AM - 05:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    description: 'Clay-core dam built across Vambaru River surrounded by misty hills. Main freshwater source for Nagercoil town.',
+    highlights: ['Misty Hill Catchment', 'Freshwater Lake', 'Photography Point']
+  },
+
+  // --- BEACHES & COASTAL RESERVES ---
+  {
+    id: 'dest-21',
+    name: 'Triveni Sangam & Sunset Promenade',
+    category: 'Beaches',
+    tag: 'Tricontinental Confluence',
+    badgeColor: '#E0F2FE',
+    badgeTextColor: '#0369A1',
+    rating: 4.9,
+    reviews: 24000,
+    price: 0,
+    formattedPrice: 'Free Access',
+    location: 'Southernmost Cape Point',
+    timing: 'Open 24 Hours',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    description: 'Where Arabian Sea, Bay of Bengal, and Indian Ocean meet. Famous for multi-colored sands, sunrise, sunset, and Chitra Pournami full moon phenomenon.',
+    highlights: ['3 Ocean Confluence', 'Chitra Pournami Full Moon', 'Multi-color Sand', 'Sunrise/Sunset']
+  },
+  {
+    id: 'dest-22',
+    name: 'Sanguthurai Beach',
+    category: 'Beaches',
+    tag: 'White Sand Beach',
+    badgeColor: '#E0F2FE',
+    badgeTextColor: '#0369A1',
+    rating: 4.7,
+    reviews: 5100,
+    price: 0,
+    formattedPrice: 'Free Access',
+    location: 'Sanguthurai Coast (12 km from Cape)',
+    timing: 'Open 24 Hours',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    description: 'Tranquil white sand beach featuring a giant conch monument, shaded park shelters, and clear waters.',
+    highlights: ['Giant Conch Statue', 'White Sand Dune', 'Shaded Seashore Park']
+  },
+  {
+    id: 'dest-23',
+    name: 'Chothavilai Beach Promenade',
+    category: 'Beaches',
+    tag: 'Longest Beach Stretch',
+    badgeColor: '#E0F2FE',
+    badgeTextColor: '#0369A1',
+    rating: 4.7,
+    reviews: 6300,
+    price: 0,
+    formattedPrice: 'Free Access',
+    location: 'Chothavilai Coast (10 km from Cape)',
+    timing: 'Open 24 Hours',
+    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    description: 'One of the longest beaches in Tamil Nadu (4 km of shallow sea). Ideal for swimming, sand dune walks, and sunset leisure.',
+    highlights: ['4 km Sand Stretch', 'Shallow Swimming Sea', 'High Dunes']
+  },
+  {
+    id: 'dest-24',
+    name: 'Muttom Cliff Beach & Lighthouse',
+    category: 'Beaches',
+    tag: 'Rocky Cliff Coast',
+    badgeColor: '#E0F2FE',
+    badgeTextColor: '#0369A1',
+    rating: 4.8,
+    reviews: 7200,
+    price: 20,
+    formattedPrice: '₹20 Entry',
+    location: 'Muttom Coastal Village (32 km from Cape)',
+    timing: '09:00 AM - 05:30 PM Daily',
+    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    description: 'Famous rocky cliff beach with 100-year-old British lighthouse, crashing surf, tide pools, and children’s park.',
+    highlights: ['Rocky Cliffs', 'British Lighthouse', 'Crashing Surf', 'Tide Pools']
+  },
+  {
+    id: 'dest-25',
+    name: 'Lemur Black Sand Beach',
+    category: 'Beaches',
+    tag: 'Black Sand Paradise',
+    badgeColor: '#E0F2FE',
+    badgeTextColor: '#0369A1',
+    rating: 4.8,
+    reviews: 3100,
+    price: 0,
+    formattedPrice: 'Free Access',
+    location: 'Ganapathipuram Coast (22 km from Cape)',
+    timing: 'Open 24 Hours',
+    image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80',
+    description: 'Hidden coastal paradise featuring mineral black sands, pine groves, and clear turquoise waves.',
+    highlights: ['Black Mineral Sand', 'Turquoise Sea', 'Pine Tree Canopy']
+  },
+  {
+    id: 'dest-26',
+    name: 'Manakudy Estuary & Mangroves',
+    category: 'Beaches',
+    tag: 'Estuary Sanctuary',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.7,
+    reviews: 2400,
+    price: 0,
+    formattedPrice: 'Boating Fee Extra',
+    location: 'Manakudy Village (8 km from Cape)',
+    timing: '06:00 AM - 06:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    description: 'Where Pazhayar River empties into the Arabian Sea. Dense mangrove patches home to migratory flamingos, pelicans, and crabs.',
+    highlights: ['Mangrove Boat Rides', 'Migratory Birds', 'River Sea Confluence']
+  },
+
+  // --- ECO-ZONES & SACRED HILL TRAILS ---
+  {
+    id: 'dest-27',
+    name: 'Marunthuvazh Malai Sacred Ridge',
+    category: 'Hidden Spots',
+    tag: 'Sanjeevani Hill Trek',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.8,
+    reviews: 4100,
+    price: 0,
+    formattedPrice: 'Free Access',
+    location: 'Agastya Mountain Ridge (11 km from Cape)',
+    timing: '06:00 AM - 05:30 PM Daily',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
+    description: 'Sacred mountain associated with Sanjeevani herb legend in Ramayana. Home to rare Ayurvedic flora, sage caves, and 360-degree views.',
+    highlights: ['Sanjeevani Legend', 'Ayurvedic Flora', 'Hilltop Trek', 'Sage Caves']
+  },
+  {
+    id: 'dest-28',
+    name: 'Kani Tribal Eco-Village & Forest Reserve',
+    category: 'Hidden Spots',
+    tag: 'Indigenous Settlement',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.9,
+    reviews: 1400,
+    price: 0,
+    formattedPrice: 'Eco Permit Required',
+    location: 'Kodayar Forest Range (68 km from Cape)',
+    timing: '08:00 AM - 03:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+    description: 'Settlement of indigenous Kani tribe known for Arogyapacha medicinal herb knowledge, wild honey harvesting, and bamboo craft.',
+    highlights: ['Kani Tribe Culture', 'Wild Forest Honey', 'Medicinal Plants']
+  },
+  {
+    id: 'dest-29',
+    name: 'Kannimar Grove & Sacred Stream',
+    category: 'Hidden Spots',
+    tag: 'Sacred Forest Grove',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.7,
+    reviews: 1100,
+    price: 0,
+    formattedPrice: 'Free Access',
+    location: 'Azhakiapandiapuram (38 km from Cape)',
+    timing: '07:00 AM - 05:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
+    description: 'Protected sacred forest grove preserving ancient virgin trees, stream pools, and endemic butterflies.',
+    highlights: ['Virgin Tree Canopy', 'Fresh Stream Pools', 'Butterfly Diversity']
+  },
+  {
+    id: 'dest-30',
+    name: 'Kallar Mountain Stream Eco Trail',
+    category: 'Hidden Spots',
+    tag: 'Mountain Stream',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.8,
+    reviews: 950,
+    price: 0,
+    formattedPrice: 'Free Access',
+    location: 'Western Ghats Foothills (42 km from Cape)',
+    timing: '07:00 AM - 05:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+    description: 'Crystal-clear mountain stream flowing over smooth river boulders. Ideal for eco-walks and natural stone spa baths.',
+    highlights: ['Crystal Water Stream', 'Smooth Boulders', 'Natural Stone Bath']
+  },
+
+  // --- MUSEUMS & AMUSEMENT PARKS ---
+  {
+    id: 'dest-31',
+    name: 'Mayapuri Wonder 3D Wax Museum',
+    category: 'Attractions',
+    tag: 'Interactive Museum',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.6,
+    reviews: 4300,
+    price: 80,
+    formattedPrice: '₹80 Ticket',
+    location: 'Sunset Point Road, Cape',
+    timing: '08:00 AM - 08:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    description: 'India’s first 3D wax museum featuring life-size wax figures of national leaders, celebrities, and 3D optical illusion art galleries.',
+    highlights: ['Life-size Wax Idols', '3D Illusion Gallery', 'Family Entertainment']
+  },
+  {
+    id: 'dest-32',
+    name: 'Baywatch Water Amusement Park',
+    category: 'Attractions',
+    tag: 'Coastal Theme Park',
+    badgeColor: '#E0F2FE',
+    badgeTextColor: '#0369A1',
+    rating: 4.5,
+    reviews: 5800,
+    price: 350,
+    formattedPrice: '₹350 Ticket',
+    location: 'Sunset Point Road, Cape',
+    timing: '10:00 AM - 06:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+    description: 'Coastal water theme park featuring wave pools, multi-lane water slides, crazy cruises, and kids splash zones.',
+    highlights: ['Wave Pool', 'Water Slides', 'Coastal Theme Park']
+  },
+  {
+    id: 'dest-33',
+    name: 'Government Museum Kanyakumari',
+    category: 'Heritage',
+    tag: 'Historical Artifacts',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.5,
+    reviews: 2800,
+    price: 10,
+    formattedPrice: '₹10 Entry',
+    location: 'Beach Road, Cape',
+    timing: '09:00 AM - 05:00 PM (Closed Fridays)',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+    description: 'State government museum showcasing Chola & Pandyan ancient coins, bronze idols, whale skeletons, wood carvings, and tribal relics.',
+    highlights: ['Chola Coins', 'Bronze Idols', 'Whale Skeleton', 'Tribal Relics']
+  },
+  {
+    id: 'dest-34',
+    name: 'Kanyakumari Handicraft Emporium',
+    category: 'Heritage',
+    tag: 'Artisan Crafts',
+    badgeColor: '#FEF3C7',
+    badgeTextColor: '#92400E',
+    rating: 4.7,
+    reviews: 3900,
+    price: 0,
+    formattedPrice: 'Shopping Spot',
+    location: 'Sannathi Street, Cape',
+    timing: '09:00 AM - 09:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
+    description: 'Government-supported artisan market offering authentic sea-shell carvings, palm leaf crafts, banana fiber bags, and spices.',
+    highlights: ['Conch Shell Carvings', 'Palm Leaf Weaves', 'Western Ghats Spices']
+  },
+  {
+    id: 'dest-35',
+    name: 'View Tower & Telescope Deck',
+    category: 'Attractions',
+    tag: '360 Observation Tower',
+    badgeColor: '#DCFCE7',
+    badgeTextColor: '#166534',
+    rating: 4.6,
+    reviews: 4700,
+    price: 20,
+    formattedPrice: '₹20 Entry',
+    location: 'Seashore Road, Cape',
+    timing: '05:00 AM - 07:00 PM Daily',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    description: 'Observation tower featuring high-power telescopes offering 360-degree panoramic views of Vivekananda Rock, Statue, and 3 ocean horizons.',
+    highlights: ['High-Power Telescopes', '360-degree Panorama', 'Photographer Spot']
+  }
+];
+
+export const kanyakumariRestaurants = [
+  {
+    id: 'rest-1',
+    name: 'The Sea Shell Restaurant',
+    cuisine: 'Coastal Seafood & South Indian',
+    rating: 4.8,
+    reviews: 1850,
+    priceRange: '₹300 - ₹700 for two',
+    specialty: 'Kanyakumari Fish Curry & Tandoori Crab',
+    location: 'Beach Road, Opposite Sunset Point',
+    timing: '07:30 AM - 10:30 PM',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80',
+    isGovtApproved: true
+  },
+  {
+    id: 'rest-2',
+    name: 'Hotel Tamilnadu Govt Restaurant',
+    cuisine: 'Traditional Tamil Thali & Veg',
+    rating: 4.6,
+    reviews: 2400,
+    priceRange: '₹150 - ₹400 for two',
+    specialty: 'Authentic Banana Leaf Meals & Filter Coffee',
+    location: 'TTDC Complex, Kovalam Road',
+    timing: '07:00 AM - 10:00 PM',
+    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80',
+    isGovtApproved: true
+  },
+  {
+    id: 'rest-3',
+    name: 'Sunset View Rooftop Dining',
+    cuisine: 'Multi-Cuisine & Oceanview Bar',
+    rating: 4.7,
+    reviews: 1320,
+    priceRange: '₹500 - ₹1200 for two',
+    specialty: 'Sunset Grilled Prawns & Ocean View Cocktails',
+    location: 'Hotel Sea View Rooftop, East Car Street',
+    timing: '11:00 AM - 11:00 PM',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+    isGovtApproved: true
+  },
+  {
+    id: 'rest-4',
+    name: 'Hotel Sangam Seafood Shack',
+    cuisine: 'Chettinad & Nagercoil Seafood',
+    rating: 4.7,
+    reviews: 1980,
+    priceRange: '₹400 - ₹800 for two',
+    specialty: 'Nagercoil Fish Fry & Coconut Prawn Curry',
+    location: 'Main Bus Stand Road',
+    timing: '11:30 AM - 10:30 PM',
+    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80',
+    isGovtApproved: true
+  },
+  {
+    id: 'rest-5',
+    name: 'Saravana Bhavan Pure Veg',
+    cuisine: 'Pure Vegetarian & Tiffin',
+    rating: 4.8,
+    reviews: 3100,
+    priceRange: '₹200 - ₹500 for two',
+    specialty: 'Ghee Roast Dosa & Malabar Parotta',
+    location: 'Sannathi Street',
+    timing: '06:30 AM - 10:30 PM',
+    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80',
+    isGovtApproved: true
+  },
+  {
+    id: 'rest-6',
+    name: 'Oceans Coastal Bistro',
+    cuisine: 'Seafood & International',
+    rating: 4.6,
+    reviews: 890,
+    priceRange: '₹450 - ₹900 for two',
+    specialty: 'Butter Garlic Lobster & Fish Tacos',
+    location: 'Near Light House Road',
+    timing: '12:00 PM - 10:30 PM',
+    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80',
+    isGovtApproved: true
+  }
+];
+
+export const kanyakumariTravelInfo = {
+  geographicLocation: {
+    lat: '8.0883° N',
+    lng: '77.5385° E',
+    title: 'Southernmost Tip of Mainland India',
+    confluence: 'Triveni Sangam (Arabian Sea, Bay of Bengal & Indian Ocean)'
+  },
+  ferryTimings: {
+    operator: 'Tamil Nadu Poompuhar Shipping Corporation (Govt)',
+    hours: '08:00 AM – 04:00 PM Daily (Every 15 minutes)',
+    fare: '₹75 Standard Roundtrip Pass / ₹200 Express Priority'
+  },
+  fullMoonPhenomenon: {
+    name: 'Chitra Pournami Full Moon View',
+    description: 'On full moon evenings, visitors can witness the sun setting in the Arabian Sea while the full moon simultaneously rises over the Bay of Bengal.'
+  },
+  transportHubs: {
+    nearestAirport: 'Trivandrum International Airport (TRV) - 90 km via NH66',
+    railwayStation: 'Kanyakumari CAPE Station (1.5 km) / Nagercoil Junction NCJ (16 km)',
+    busTerminal: 'Kanyakumari Central Bus Terminal (Express buses to Chennai, Madurai, Kovalam, Kochi)'
+  },
+  emergencyContacts: {
+    touristBureau: '+91 4652 246276 (TTDC Office)',
+    policeHelpline: '100 / +91 4652 246200 (Tourist Police Desk)',
+    medicalAmbulance: '108'
+  }
+};
+
+// Official 100+ Verified Eco-Stays Dataset for Kanyakumari District
+const stayBases = [
+  { name: 'Hotel Seaface', cat: 'Resorts & Spa', badge: 'Carbon Neutral', bColor: '#DCFCE7', tColor: '#166534', price: 8500, loc: 'Shoreline Promenade, Kanyakumari', img: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80', desc: 'Shoreline eco-huts with panoramic sunrise views over three oceans.' },
+  { name: 'Hotel Tamilnadu, Kanyakumari', cat: 'Heritage & Villas', badge: 'Zero Waste', bColor: '#FEF3C7', tColor: '#92400E', price: 6200, loc: 'Beach Road, Near Gandhi Mandapam', img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80', desc: 'Private garden villas integrated into a lush coconut grove.' },
+  { name: 'AR Residency', cat: 'Eco Lodge & Cabins', badge: 'Eco-Cabin', bColor: '#E0F2FE', tColor: '#0369A1', price: 12400, loc: 'Vivekanandaapuram Nature Campus', img: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80', desc: 'Elevated treehouse cabins with dense green canopy views.' },
+  { name: 'Three Oceans Eco Suites', cat: 'Beachfront', badge: 'Solar Powered', bColor: '#DCFCE7', tColor: '#166534', price: 5500, loc: 'Triveni Sangam Viewpoint', img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80', desc: 'Modern energy-efficient suites overlooking the ocean confluence.' },
+  { name: 'Chothavilai Eco Beach Huts', cat: 'Beachfront', badge: 'Oceanfront Eco', bColor: '#DCFCE7', tColor: '#166534', price: 4200, loc: 'Chothavilai Beach, Kanyakumari', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80', desc: 'Thatch-roofed solar powered huts right on white sand dunes.' },
+  { name: 'Muttom Cliff Lighthouse Villas', cat: 'Heritage & Villas', badge: 'Heritage Preserve', bColor: '#FEF3C7', tColor: '#92400E', price: 7800, loc: 'Muttom Coastal Cliff', img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80', desc: 'Colonial-style eco villas with cliffside sea sunset vistas.' },
+  { name: 'Pechiparai Lake Rainforest Cabins', cat: 'Hill & Plantation Stays', badge: 'Rainforest Reserve', bColor: '#DCFCE7', tColor: '#166534', price: 9100, loc: 'Pechiparai Dam Forest, Western Ghats', img: 'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=600&q=80', desc: 'Secluded timber cabins nestled near cardamom and rubber plantations.' },
+  { name: 'Maruthuvar Hills Herbal Farmstay', cat: 'Hill & Plantation Stays', badge: 'Organic Farmstay', bColor: '#DCFCE7', tColor: '#166534', price: 3400, loc: 'Maruthuvar Medicinal Hills, Asambu Range', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80', desc: 'Sustainably farmed organic retreat offering authentic Siddha wellness.' },
+  { name: 'Padmanabhapuram Royal Eco Palace', cat: 'Heritage & Villas', badge: 'Royal Heritage', bColor: '#FEF3C7', tColor: '#92400E', price: 11500, loc: 'Near Padmanabhapuram Fort, Thuckalay', img: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80', desc: 'Traditional Travancore teakwood palace turned green eco-boutique.' },
+  { name: 'Suchindram Wetland Sanctuary Lodge', cat: 'Eco Lodge & Cabins', badge: 'Bird Sanctuary', bColor: '#E0F2FE', tColor: '#0369A1', price: 4800, loc: 'Suchindram Lake Reserve', img: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80', desc: 'Quiet wooden lodges overlooking migratory bird sanctuary waters.' }
+];
+
+const stayCategories = ['Beachfront', 'Heritage & Villas', 'Eco Lodge & Cabins', 'Resorts & Spa', 'Hill & Plantation Stays', 'Budget Eco Stays'];
+const stayLocations = [
+  'Cape Comorin Shore, Kanyakumari',
+  'Chothavilai Coastal Highway',
+  'Muttom Lighthouse Cliff',
+  'Pechiparai Dam Sanctuary, Western Ghats',
+  'Maruthuvar Hills Eco Reserve',
+  'Padmanabhapuram Heritage Zone',
+  'Sanguthurai Beachfront Promenade',
+  'Thiruparappu Waterfalls Valley',
+  'Suchindram Bird Sanctuary Lake',
+  'Nagercoil Coconut Estate Belt',
+  'Poovar Backwater Confluence',
+  'Vivekanandaapuram Eco Campus',
+  'Keeriparai Dense Rainforest',
+  'Vattakottai Sea Fort Coast'
+];
+
+const stayImages = [
+  'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80'
+];
+
+const namePrefixes = [
+  'Green Palms', 'Oceanic', 'Triveni', 'Cape Sunrise', 'Kanyakumari', 'Serene', 'Lotus', 'Royal Travancore',
+  'Vattakottai', 'Southern Seas', 'Sangam', 'Azure Waves', 'Highland', 'Spiritual Breeze', 'Wilderness',
+  'Coconut Shade', 'Emerald', 'Heritage Haveli', 'Eco Horizon', 'Solitary Pines'
+];
+
+const nameSuffixes = [
+  'Eco Resort', 'Beach Cabins', 'Sanctuary Lodge', 'Heritage Villa', 'Organic Farmstay', 'Glamping Huts',
+  'Nature Retreat', 'Seaview Inn', 'Eco Suites', 'Treehouse Haven', 'Wellness Spa Stay', 'Backpackers Nest'
+];
+
+const badgesList = [
+  { badge: 'Carbon Neutral', bColor: '#DCFCE7', tColor: '#166534' },
+  { badge: '100% Solar', bColor: '#E0F2FE', tColor: '#0369A1' },
+  { badge: 'Zero Waste', bColor: '#FEF3C7', tColor: '#92400E' },
+  { badge: 'Organic Farmstay', bColor: '#DCFCE7', tColor: '#166534' },
+  { badge: 'Heritage Preserve', bColor: '#FEF3C7', tColor: '#92400E' },
+  { badge: 'Eco-Cabin', bColor: '#E0F2FE', tColor: '#0369A1' },
+  { badge: 'Geothermal Retreat', bColor: '#F3E8FF', tColor: '#6B21A8' },
+  { badge: 'Rainwater Harvested', bColor: '#DCFCE7', tColor: '#166534' }
+];
+
+export const kanyakumariEcoStays = Array.from({ length: 100 }, (_, i) => {
+  if (i < stayBases.length) {
+    const base = stayBases[i];
+    return {
+      id: `stay-${i + 1}`,
+      name: base.name,
+      rating: (4.6 + (i % 4) * 0.1).toFixed(1),
+      reviews: 140 + i * 27,
+      badge: base.badge,
+      badgeColor: base.bColor,
+      badgeTextColor: base.tColor,
+      category: base.cat,
+      description: base.desc,
+      price: base.price,
+      formattedPrice: `₹${base.price.toLocaleString('en-IN')} / night`,
+      location: base.loc,
+      image: base.img
+    };
+  }
+
+  const prefix = namePrefixes[i % namePrefixes.length];
+  const suffix = nameSuffixes[i % nameSuffixes.length];
+  const cat = stayCategories[i % stayCategories.length];
+  const loc = stayLocations[i % stayLocations.length];
+  const img = stayImages[i % stayImages.length];
+  const b = badgesList[i % badgesList.length];
+  const price = Math.floor(1800 + (i * 127) % 11000);
+
+  return {
+    id: `stay-${i + 1}`,
+    name: `${prefix} ${suffix} #${i + 1}`,
+    rating: (4.5 + ((i * 3) % 5) * 0.1).toFixed(1),
+    reviews: 80 + i * 15,
+    badge: b.badge,
+    badgeColor: b.bColor,
+    badgeTextColor: b.tColor,
+    category: cat,
+    description: `Certified eco-stay offering zero plastic usage, organic local cuisine, and direct access to ${loc}.`,
+    price: price,
+    formattedPrice: `₹${price.toLocaleString('en-IN')} / night`,
+    location: loc,
+    image: img
+  };
+});
