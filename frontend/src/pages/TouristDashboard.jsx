@@ -71,26 +71,119 @@ export default function TouristDashboard({ user, onLogout, onBookItem, onUpdateU
     setNewPassword('');
     setConfirmPassword('');
     setProfileMsg({ type: '', text: '' });
+    setProfileOtpSent(false);
+    setProfileOtpDigits(['', '', '', '', '', '']);
+    setEditProfileTab('general');
     setShowProfileModal(true);
   };
 
+  // Password change OTP state
+  const [profileOtpSent, setProfileOtpSent] = useState(false);
+  const [profileOtpDigits, setProfileOtpDigits] = useState(['', '', '', '', '', '']);
+
+  const handleProfileOtpChange = (index, value) => {
+    if (!/^\d*$/.test(value)) return;
+    const newDigits = [...profileOtpDigits];
+    newDigits[index] = value.slice(-1);
+    setProfileOtpDigits(newDigits);
+    if (value && index < 5) {
+      const next = document.getElementById(`profile-otp-${index + 1}`);
+      if (next) next.focus();
+    }
+  };
+
+  const handleProfileOtpKeyDown = (index, e) => {
+    if (e.key === 'Backspace' && !profileOtpDigits[index] && index > 0) {
+      const prev = document.getElementById(`profile-otp-${index - 1}`);
+      if (prev) prev.focus();
+    }
+  };
+
+  // Send OTP for password change
+  const handleSendPasswordOtp = async () => {
+    setProfileMsg({ type: '', text: '' });
+    if (!newPassword || newPassword.length < 4) {
+      setProfileMsg({ type: 'error', text: 'New password must be at least 4 characters.' });
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setProfileMsg({ type: 'error', text: 'New passwords do not match.' });
+      return;
+    }
+
+    setProfileSubmitting(true);
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/send-password-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: user?.email })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setProfileOtpSent(true);
+        setProfileOtpDigits(['', '', '', '', '', '']);
+        setProfileMsg({ type: 'success', text: `Verification code sent to ${user?.email}. Check your inbox.` });
+      } else {
+        setProfileMsg({ type: 'error', text: data.message || 'Failed to send OTP.' });
+      }
+    } catch {
+      setProfileMsg({ type: 'error', text: 'Cannot connect to server.' });
+    }
+    setProfileSubmitting(false);
+  };
+
+  // Verify OTP and update password
+  const handleVerifyPasswordOtp = async () => {
+    const otp = profileOtpDigits.join('');
+    if (otp.length < 6) {
+      setProfileMsg({ type: 'error', text: 'Please enter all 6 digits.' });
+      return;
+    }
+
+    setProfileSubmitting(true);
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/verify-password-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: user?.email, otp, newPassword })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setProfileMsg({ type: 'success', text: '🎉 Password updated successfully!' });
+        if (data.user && onUpdateUser) onUpdateUser(data.user);
+        triggerToast('🔒 Password changed successfully!');
+        setTimeout(() => {
+          setShowProfileModal(false);
+          setProfileOtpSent(false);
+          setNewPassword('');
+          setConfirmPassword('');
+        }, 1200);
+      } else {
+        setProfileMsg({ type: 'error', text: data.message || 'Invalid verification code.' });
+      }
+    } catch {
+      setProfileMsg({ type: 'error', text: 'Cannot connect to server.' });
+    }
+    setProfileSubmitting(false);
+  };
+
+  // Save general profile info (name / email — no OTP needed)
   const handleSaveProfile = async (e) => {
     e.preventDefault();
     setProfileMsg({ type: '', text: '' });
 
-    if (newPassword) {
-      if (newPassword.length < 4) {
-        setProfileMsg({ type: 'error', text: 'New password must be at least 4 characters long.' });
-        return;
+    // If on password tab, handle password OTP flow
+    if (editProfileTab === 'password') {
+      if (!profileOtpSent) {
+        handleSendPasswordOtp();
+      } else {
+        handleVerifyPasswordOtp();
       }
-      if (newPassword !== confirmPassword) {
-        setProfileMsg({ type: 'error', text: 'New password and confirm password do not match.' });
-        return;
-      }
+      return;
     }
 
+    // General info update
     setProfileSubmitting(true);
-
     try {
       const res = await fetch('http://localhost:5000/api/auth/update-profile', {
         method: 'PUT',
@@ -98,33 +191,20 @@ export default function TouristDashboard({ user, onLogout, onBookItem, onUpdateU
         body: JSON.stringify({
           currentEmail: user?.email,
           newName: editName,
-          newEmail: editEmail,
-          currentPassword,
-          newPassword
+          newEmail: editEmail
         })
       });
       const data = await res.json();
-
       if (data.success) {
         setProfileMsg({ type: 'success', text: '🎉 Profile updated successfully!' });
-        if (onUpdateUser) {
-          onUpdateUser(data.user);
-        }
-        triggerToast('🎉 Account profile details saved!');
-        setTimeout(() => {
-          setShowProfileModal(false);
-          setCurrentPassword('');
-          setNewPassword('');
-          setConfirmPassword('');
-        }, 1200);
+        if (onUpdateUser) onUpdateUser(data.user);
+        triggerToast('🎉 Profile details saved!');
+        setTimeout(() => setShowProfileModal(false), 1200);
       } else {
         setProfileMsg({ type: 'error', text: data.message || 'Failed to update profile.' });
       }
     } catch {
-      const updatedUser = { ...user, name: editName, email: editEmail };
-      if (onUpdateUser) onUpdateUser(updatedUser);
-      triggerToast('🎉 Account profile details saved!');
-      setTimeout(() => setShowProfileModal(false), 1200);
+      setProfileMsg({ type: 'error', text: 'Cannot connect to server.' });
     }
     setProfileSubmitting(false);
   };
@@ -2313,59 +2393,95 @@ export default function TouristDashboard({ user, onLogout, onBookItem, onUpdateU
 
               {editProfileTab === 'password' && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: '700', color: '#475569', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      Current Password
-                    </label>
-                    <input
-                      type="password"
-                      value={currentPassword}
-                      onChange={(e) => setCurrentPassword(e.target.value)}
-                      placeholder="Enter current password"
-                      style={{
-                        width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1.5px solid #E2E8F0',
-                        fontSize: '0.92rem', color: '#1E293B', outline: 'none', backgroundColor: '#F8FAFC'
-                      }}
-                      onFocus={(e) => e.target.style.borderColor = '#2D6A4F'}
-                      onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
-                    />
-                  </div>
 
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: '700', color: '#475569', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      New Password
-                    </label>
-                    <input
-                      type="password"
-                      value={newPassword}
-                      onChange={(e) => setNewPassword(e.target.value)}
-                      placeholder="Enter new password"
-                      style={{
-                        width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1.5px solid #E2E8F0',
-                        fontSize: '0.92rem', color: '#1E293B', outline: 'none', backgroundColor: '#F8FAFC'
-                      }}
-                      onFocus={(e) => e.target.style.borderColor = '#2D6A4F'}
-                      onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
-                    />
-                  </div>
+                  {!profileOtpSent ? (
+                    <>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: '700', color: '#475569', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                          New Password
+                        </label>
+                        <input
+                          type="password"
+                          value={newPassword}
+                          onChange={(e) => setNewPassword(e.target.value)}
+                          placeholder="Enter new password (min 4 chars)"
+                          style={{
+                            width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1.5px solid #E2E8F0',
+                            fontSize: '0.92rem', color: '#1E293B', outline: 'none', backgroundColor: '#F8FAFC'
+                          }}
+                          onFocus={(e) => e.target.style.borderColor = '#2D6A4F'}
+                          onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
+                        />
+                      </div>
 
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: '700', color: '#475569', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      Confirm New Password
-                    </label>
-                    <input
-                      type="password"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      placeholder="Re-enter new password"
-                      style={{
-                        width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1.5px solid #E2E8F0',
-                        fontSize: '0.92rem', color: '#1E293B', outline: 'none', backgroundColor: '#F8FAFC'
-                      }}
-                      onFocus={(e) => e.target.style.borderColor = '#2D6A4F'}
-                      onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
-                    />
-                  </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: '700', color: '#475569', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                          Confirm New Password
+                        </label>
+                        <input
+                          type="password"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          placeholder="Re-enter new password"
+                          style={{
+                            width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1.5px solid #E2E8F0',
+                            fontSize: '0.92rem', color: '#1E293B', outline: 'none', backgroundColor: '#F8FAFC'
+                          }}
+                          onFocus={(e) => e.target.style.borderColor = '#2D6A4F'}
+                          onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
+                        />
+                      </div>
+
+                      <div style={{ backgroundColor: '#FFF7ED', borderRadius: '10px', padding: '12px 16px', border: '1px solid #FED7AA' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#9A3412', fontWeight: '600' }}>
+                          🔒 Password changes require email OTP verification
+                        </div>
+                        <div style={{ fontSize: '0.72rem', color: '#78716C', marginTop: '2px' }}>
+                          A 6-digit code will be sent to {user?.email}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div style={{ textAlign: 'center' }}>
+                        <div style={{ fontSize: '0.88rem', color: '#1E293B', fontWeight: '600', marginBottom: '4px' }}>
+                          Enter 6-Digit Verification Code
+                        </div>
+                        <div style={{ fontSize: '0.78rem', color: '#64748B', marginBottom: '16px' }}>
+                          Sent to <strong style={{ color: '#2D6A4F' }}>{user?.email}</strong>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', justifyContent: 'center', gap: '8px' }}>
+                        {profileOtpDigits.map((digit, idx) => (
+                          <input
+                            key={idx}
+                            id={`profile-otp-${idx}`}
+                            type="text"
+                            maxLength="1"
+                            value={digit}
+                            onChange={(e) => handleProfileOtpChange(idx, e.target.value)}
+                            onKeyDown={(e) => handleProfileOtpKeyDown(idx, e)}
+                            style={{
+                              width: '42px', height: '48px', borderRadius: '10px',
+                              border: digit ? '2px solid #166534' : '1.5px solid #CBD5E1',
+                              backgroundColor: digit ? '#F0FDF4' : '#FFFFFF',
+                              fontSize: '1.2rem', fontWeight: '800', color: '#1B4332',
+                              textAlign: 'center', outline: 'none'
+                            }}
+                          />
+                        ))}
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => { setProfileOtpSent(false); setProfileMsg({ type: '', text: '' }); }}
+                        style={{ background: 'none', border: 'none', color: '#2D6A4F', fontSize: '0.82rem', fontWeight: '600', cursor: 'pointer', textAlign: 'center' }}
+                      >
+                        ← Back to password fields
+                      </button>
+                    </>
+                  )}
                 </div>
               )}
 
@@ -2402,7 +2518,7 @@ export default function TouristDashboard({ user, onLogout, onBookItem, onUpdateU
                     opacity: profileSubmitting ? 0.6 : 1
                   }}
                 >
-                  {profileSubmitting ? 'Saving...' : '💾 Save Changes'}
+                  {profileSubmitting ? 'Processing...' : editProfileTab === 'password' ? (profileOtpSent ? '🔑 Verify OTP & Change Password' : '📧 Send Verification Code') : '💾 Save Changes'}
                 </button>
               </div>
             </form>

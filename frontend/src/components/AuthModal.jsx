@@ -61,43 +61,72 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
         setErrorMsg(data.message || 'Invalid Admin ID or Passcode.');
       }
     } catch {
-      finishAdminLogin();
+      setErrorMsg('Cannot connect to server. Please try again.');
     }
     setLoading(false);
   };
 
-  // Handle Primary Login / Register Action -> Trigger Gmail OTP
-  const handlePrimarySubmit = async (e) => {
+  // Handle LOGIN: direct email + password (NO OTP)
+  const handleLogin = async (e) => {
     e.preventDefault();
     setErrorMsg('');
 
-    if (!identity) {
-      setErrorMsg('Please enter your email address');
-      return;
-    }
-
-    if (mode === 'register' && password !== confirm) {
-      setErrorMsg('Passwords do not match');
+    if (!identity || !password) {
+      setErrorMsg('Please enter your email and password.');
       return;
     }
 
     setLoading(true);
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: identity, password })
+      });
+      const data = await res.json();
 
+      if (data.success) {
+        setIsVerified(true);
+        if (data.token) {
+          localStorage.setItem('userToken', data.token);
+          localStorage.setItem('currentUser', JSON.stringify(data.user));
+        }
+        if (onUserLoginSuccess) onUserLoginSuccess(data.user);
+        setTimeout(() => { setIsVerified(false); onClose(); }, 1200);
+      } else {
+        setErrorMsg(data.message || 'Login failed. Check your credentials.');
+      }
+    } catch {
+      setErrorMsg('Cannot connect to server. Please try again.');
+    }
+    setLoading(false);
+  };
+
+  // Handle REGISTER: send OTP to email for verification
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setErrorMsg('');
+
+    if (!identity || !name || !password) {
+      setErrorMsg('Please fill in all fields.');
+      return;
+    }
+    if (password !== confirm) {
+      setErrorMsg('Passwords do not match.');
+      return;
+    }
+
+    setLoading(true);
     try {
       const res = await fetch('http://localhost:5000/api/auth/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          identity: identity,
-          name,
-          role,
-          password
-        })
+        body: JSON.stringify({ identity, name, role, password })
       });
       const data = await res.json();
 
       if (!data.success) {
-        setErrorMsg(data.message || 'Failed to send verification email. Try again.');
+        setErrorMsg(data.message || 'Failed to send verification email.');
         setLoading(false);
         return;
       }
@@ -105,10 +134,8 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
       setOtpDigits(['', '', '', '', '', '']);
       setMode('otp');
     } catch {
-      setOtpDigits(['', '', '', '', '', '']);
-      setMode('otp');
+      setErrorMsg('Cannot connect to server. Please try again.');
     }
-
     setLoading(false);
   };
 
@@ -144,14 +171,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
         setErrorMsg(data.message || 'Google OAuth Sign-In failed.');
       }
     } catch {
-      setIsVerified(true);
-      if (onUserLoginSuccess) {
-        onUserLoginSuccess(userPayload);
-      }
-      setTimeout(() => {
-        setIsVerified(false);
-        onClose();
-      }, 1500);
+      setErrorMsg('Cannot connect to server. Please try again.');
     }
     setLoading(false);
   };
@@ -208,15 +228,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
         setErrorMsg(data.message || 'Invalid OTP code.');
       }
     } catch {
-      setIsVerified(true);
-      if (onUserLoginSuccess) {
-        onUserLoginSuccess({ name: name || 'Explorer', email: identity || 'tourist@kanyakumari.com', role });
-      }
-      setTimeout(() => {
-        setIsVerified(false);
-        setMode('login');
-        onClose();
-      }, 1500);
+      setErrorMsg('Cannot connect to server. Please try again.');
     }
     setLoading(false);
   };
@@ -493,7 +505,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
                   </form>
                 ) : (
                   /* TOURIST & GUIDE LOGIN / REGISTER FORM */
-                  <form onSubmit={handlePrimarySubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <form onSubmit={mode === 'login' ? handleLogin : handleRegister} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     
                     {/* Full Name (if register mode) */}
                     {mode === 'register' && (
@@ -654,7 +666,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
                         boxShadow: '0 4px 14px rgba(45, 106, 79, 0.25)'
                       }}
                     >
-                      {loading ? 'Sending OTP...' : mode === 'register' ? 'Create Account' : 'Sign In'}
+                      {loading ? (mode === 'register' ? 'Sending OTP...' : 'Signing In...') : mode === 'register' ? 'Create Account' : 'Sign In'}
                     </button>
 
                     {/* Divider: OR CONTINUE WITH */}

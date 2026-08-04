@@ -68,10 +68,7 @@ export default function RegisterPage({ onGoToLogin, onRegisterSuccess }) {
       setOtpDigits(['', '', '', '', '', '']);
       setShowOtpScreen(true);
     } catch {
-      // Offline / fallback dev mode
-      setDemoCode('482619');
-      setOtpDigits(['', '', '', '', '', '']);
-      setShowOtpScreen(true);
+      setErrorMsg('Cannot connect to server. Please check your connection and try again.');
     }
     setLoading(false);
   };
@@ -123,12 +120,7 @@ export default function RegisterPage({ onGoToLogin, onRegisterSuccess }) {
         setErrorMsg(data.message || 'OTP verification failed. Please enter the correct code.');
       }
     } catch {
-      setIsVerified(true);
-      setTimeout(() => {
-        if (onRegisterSuccess) {
-          onRegisterSuccess({ name, email, role });
-        }
-      }, 1500);
+      setErrorMsg('Cannot connect to server. Please try again.');
     }
     setLoading(false);
   };
@@ -169,12 +161,7 @@ export default function RegisterPage({ onGoToLogin, onRegisterSuccess }) {
         setErrorMsg(data.message || 'Google Registration failed.');
       }
     } catch {
-      setIsVerified(true);
-      setTimeout(() => {
-        if (onRegisterSuccess) {
-          onRegisterSuccess({ name: name || 'Google Explorer', email: email || 'user@kanniyakumari.com', role });
-        }
-      }, 1500);
+      setErrorMsg('Cannot connect to server. Please try again.');
     }
     setLoading(false);
   };

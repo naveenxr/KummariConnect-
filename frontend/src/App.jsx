@@ -91,6 +91,11 @@ export default function App() {
   };
 
   const openBookingModal = (item, type) => {
+    if (!currentUser) {
+      // Not logged in — redirect to auth
+      setIsAuthOpen(true);
+      return;
+    }
     setBookingModal({ isOpen: true, item, type });
   };
 
