@@ -2,7 +2,7 @@
 
 export const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://localhost:5000/api'
-  : 'https://kumariconnect.onrender.com/api';
+  : 'https://kummariconnect.onrender.com/api';
 
 
 export async function fetchDestinations() {
