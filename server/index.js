@@ -6,10 +6,15 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Load .env explicitly with absolute path
+// Load .env explicitly with absolute path if it exists (local development)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.join(__dirname, '.env') });
+const envPath = path.join(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+} else {
+  dotenv.config(); // Fallback to standard loading
+}
 
 // Debug: Confirm env vars are loaded
 console.log(`📧 ENV Check: EMAIL_USER=${process.env.EMAIL_USER || 'NOT SET'}, EMAIL_PASS=${process.env.EMAIL_PASS ? '[SET]' : 'NOT SET'}`);
