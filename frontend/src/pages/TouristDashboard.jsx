@@ -41,6 +41,7 @@ import {
   Send,
   X
 } from 'lucide-react';
+import { API_BASE_URL } from '../services/api';
 import { kanyakumariDestinations, kanyakumariEcoStays } from '../data/kanyakumariData';
 
 export default function TouristDashboard({ user, onLogout, onBookItem, onUpdateUser }) {
@@ -113,7 +114,7 @@ export default function TouristDashboard({ user, onLogout, onBookItem, onUpdateU
 
     setProfileSubmitting(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/send-password-otp', {
+      const res = await fetch(`${API_BASE_URL}/auth/send-password-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: user?.email })
@@ -142,7 +143,7 @@ export default function TouristDashboard({ user, onLogout, onBookItem, onUpdateU
 
     setProfileSubmitting(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/verify-password-otp', {
+      const res = await fetch(`${API_BASE_URL}/auth/verify-password-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: user?.email, otp, newPassword })
@@ -185,7 +186,7 @@ export default function TouristDashboard({ user, onLogout, onBookItem, onUpdateU
     // General info update
     setProfileSubmitting(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/update-profile', {
+      const res = await fetch(`${API_BASE_URL}/auth/update-profile`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -354,7 +355,7 @@ export default function TouristDashboard({ user, onLogout, onBookItem, onUpdateU
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/support/submit', {
+      const res = await fetch(`${API_BASE_URL}/support/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Shield, Compass, KeyRound, CheckCircle2, Lock, Mail, User as UserIcon } from 'lucide-react';
+import { API_BASE_URL } from '../services/api';
 
 export default function RegisterPage({ onGoToLogin, onRegisterSuccess }) {
   const [role, setRole] = useState('Tourist'); // 'Tourist' or 'Guide'
@@ -39,7 +40,7 @@ export default function RegisterPage({ onGoToLogin, onRegisterSuccess }) {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/send-otp', {
+      const res = await fetch(`${API_BASE_URL}/auth/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -87,7 +88,7 @@ export default function RegisterPage({ onGoToLogin, onRegisterSuccess }) {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/verify-otp', {
+      const res = await fetch(`${API_BASE_URL}/auth/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -131,7 +132,7 @@ export default function RegisterPage({ onGoToLogin, onRegisterSuccess }) {
     setErrorMsg('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/google', {
+      const res = await fetch(`${API_BASE_URL}/auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

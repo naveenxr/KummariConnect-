@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../services/api';
 import { 
   LayoutDashboard, 
   Ticket, 
@@ -75,7 +76,7 @@ export default function AdminPage({ onLogout }) {
   // Fetch support tickets from Express API
   const fetchTickets = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/support/tickets');
+      const res = await fetch(`${API_BASE_URL}/support/tickets`);
       const data = await res.json();
       if (data.success) {
         setSupportTickets(data.tickets);
@@ -105,7 +106,7 @@ export default function AdminPage({ onLogout }) {
 
   const handleUpdateTicketStatus = async (ticketId, newStatus) => {
     try {
-      await fetch(`http://localhost:5000/api/support/tickets/${ticketId}`, {
+      await fetch(`${API_BASE_URL}/support/tickets/${ticketId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })

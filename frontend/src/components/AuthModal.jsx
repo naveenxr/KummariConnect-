@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { X, ArrowLeft, KeyRound, CheckCircle2, Lock, Mail, Eye, EyeOff, Shield } from 'lucide-react';
+import { API_BASE_URL } from '../services/api';
 
 export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUserLoginSuccess }) {
   const [mode, setMode] = useState('login'); // 'login' | 'register' | 'otp'
@@ -48,7 +49,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/admin-login', {
+      const res = await fetch(`${API_BASE_URL}/auth/admin-login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ adminId, passcode })
@@ -78,7 +79,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: identity, password })
@@ -118,7 +119,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/send-otp', {
+      const res = await fetch(`${API_BASE_URL}/auth/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ identity, name, role, password })
@@ -151,7 +152,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/google', {
+      const res = await fetch(`${API_BASE_URL}/auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userInfo: userPayload, role })
@@ -202,7 +203,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
     setErrorMsg('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/verify-otp', {
+      const res = await fetch(`${API_BASE_URL}/auth/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -702,7 +703,7 @@ export default function AuthModal({ isOpen, onClose, onAdminLoginSuccess, onUser
 
                       <button
                         type="button"
-                        onClick={handlePrimarySubmit}
+                        onClick={() => alert('Apple Sign-In is coming soon!')}
                         style={{
                           backgroundColor: '#FFFFFF',
                           border: '1px solid #D8E6E0',
